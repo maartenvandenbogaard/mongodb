@@ -1,5 +1,68 @@
 # Change Log
 
+## [0.2.0-beta.0](https://github.com/kubedb/mongodb/tree/0.2.0-beta.0) (2018-09-20)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.1.0...0.2.0-beta.0)
+
+**Fixed bugs:**
+
+- Update status.ObservedGeneration for failure phase [\#72](https://github.com/kubedb/mongodb/pull/72) ([the-redback](https://github.com/the-redback))
+
+**Merged pull requests:**
+
+- Show deprecated column for mongodbversions [\#91](https://github.com/kubedb/mongodb/pull/91) ([hossainemruz](https://github.com/hossainemruz))
+- Pass extra args to tools.sh [\#90](https://github.com/kubedb/mongodb/pull/90) ([the-redback](https://github.com/the-redback))
+-  Support Termination Policy & Stop working for deprecated \*Versions [\#89](https://github.com/kubedb/mongodb/pull/89) ([the-redback](https://github.com/the-redback))
+- Revendor k8s.io/apiserver [\#88](https://github.com/kubedb/mongodb/pull/88) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor kubernetes-1.11.3 [\#87](https://github.com/kubedb/mongodb/pull/87) ([tamalsaha](https://github.com/tamalsaha))
+- Don't try to wipe out Snapshot data for Local backend [\#86](https://github.com/kubedb/mongodb/pull/86) ([hossainemruz](https://github.com/hossainemruz))
+- Support UpdateStrategy [\#85](https://github.com/kubedb/mongodb/pull/85) ([tamalsaha](https://github.com/tamalsaha))
+- Add TerminationPolicy for databases [\#84](https://github.com/kubedb/mongodb/pull/84) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor api [\#83](https://github.com/kubedb/mongodb/pull/83) ([tamalsaha](https://github.com/tamalsaha))
+- Fix log formatting [\#82](https://github.com/kubedb/mongodb/pull/82) ([tamalsaha](https://github.com/tamalsaha))
+- Use IntHash as status.observedGeneration [\#81](https://github.com/kubedb/mongodb/pull/81) ([tamalsaha](https://github.com/tamalsaha))
+- fix github status [\#80](https://github.com/kubedb/mongodb/pull/80) ([tahsinrahman](https://github.com/tahsinrahman))
+- update pipeline [\#79](https://github.com/kubedb/mongodb/pull/79) ([tahsinrahman](https://github.com/tahsinrahman))
+- update pipeline [\#78](https://github.com/kubedb/mongodb/pull/78) ([tahsinrahman](https://github.com/tahsinrahman))
+- maintain exporter docker image latest tag from master branch [\#76](https://github.com/kubedb/mongodb/pull/76) ([the-redback](https://github.com/the-redback))
+- Use k8s.io/apiserver from pharmer [\#75](https://github.com/kubedb/mongodb/pull/75) ([the-redback](https://github.com/the-redback))
+-  Use officially suggested exporter image [\#74](https://github.com/kubedb/mongodb/pull/74) ([the-redback](https://github.com/the-redback))
+- Migrate MongoDB [\#73](https://github.com/kubedb/mongodb/pull/73) ([tamalsaha](https://github.com/tamalsaha))
+- Keep track of ObservedGenerationHash [\#71](https://github.com/kubedb/mongodb/pull/71) ([tamalsaha](https://github.com/tamalsaha))
+- Use NewObservableHandler [\#70](https://github.com/kubedb/mongodb/pull/70) ([tamalsaha](https://github.com/tamalsaha))
+- Fix uninstall for concourse [\#69](https://github.com/kubedb/mongodb/pull/69) ([tahsinrahman](https://github.com/tahsinrahman))
+- Support passing args via PodTemplate [\#68](https://github.com/kubedb/mongodb/pull/68) ([tamalsaha](https://github.com/tamalsaha))
+- Introduce storageType : ephemeral [\#67](https://github.com/kubedb/mongodb/pull/67) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor api [\#66](https://github.com/kubedb/mongodb/pull/66) ([tamalsaha](https://github.com/tamalsaha))
+- Add support for running tests on cncf cluster [\#65](https://github.com/kubedb/mongodb/pull/65) ([tahsinrahman](https://github.com/tahsinrahman))
+- Revendor api [\#64](https://github.com/kubedb/mongodb/pull/64) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor apimachinery [\#63](https://github.com/kubedb/mongodb/pull/63) ([tamalsaha](https://github.com/tamalsaha))
+- Use ObservedGeneration in Status to keep track of last generation observed [\#62](https://github.com/kubedb/mongodb/pull/62) ([the-redback](https://github.com/the-redback))
+- Separate StatsService for monitoring [\#61](https://github.com/kubedb/mongodb/pull/61) ([the-redback](https://github.com/the-redback))
+- Use MongoDBVersion for Mongodb images [\#60](https://github.com/kubedb/mongodb/pull/60) ([the-redback](https://github.com/the-redback))
+- Use updated crd spec [\#59](https://github.com/kubedb/mongodb/pull/59) ([tamalsaha](https://github.com/tamalsaha))
+- Rename OffshootLabels to OffshootSelectors [\#58](https://github.com/kubedb/mongodb/pull/58) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor api [\#57](https://github.com/kubedb/mongodb/pull/57) ([tamalsaha](https://github.com/tamalsaha))
+- Use kmodules monitoring and objectstore api [\#56](https://github.com/kubedb/mongodb/pull/56) ([tamalsaha](https://github.com/tamalsaha))
+- Refactor concourse scripts [\#55](https://github.com/kubedb/mongodb/pull/55) ([tahsinrahman](https://github.com/tahsinrahman))
+- Fix command `./hack/make.py test e2e` [\#54](https://github.com/kubedb/mongodb/pull/54) ([the-redback](https://github.com/the-redback))
+- Set generated binary name to mg-operator [\#53](https://github.com/kubedb/mongodb/pull/53) ([tamalsaha](https://github.com/tamalsaha))
+- Don't add admission/v1beta1 group as a prioritized version [\#52](https://github.com/kubedb/mongodb/pull/52) ([tamalsaha](https://github.com/tamalsaha))
+- Enable status subresource for crds [\#51](https://github.com/kubedb/mongodb/pull/51) ([tamalsaha](https://github.com/tamalsaha))
+- Update client-go to v8.0.0 [\#50](https://github.com/kubedb/mongodb/pull/50) ([tamalsaha](https://github.com/tamalsaha))
+- Format shell script [\#49](https://github.com/kubedb/mongodb/pull/49) ([tamalsaha](https://github.com/tamalsaha))
+- Mongodb Clustering - replicaset && config file addition [\#48](https://github.com/kubedb/mongodb/pull/48) ([the-redback](https://github.com/the-redback))
+-  Updated osm version to 0.7.1 [\#47](https://github.com/kubedb/mongodb/pull/47) ([the-redback](https://github.com/the-redback))
+- Support ENV variables in CRDs [\#46](https://github.com/kubedb/mongodb/pull/46) ([hossainemruz](https://github.com/hossainemruz))
+
+## [0.1.0](https://github.com/kubedb/mongodb/tree/0.1.0) (2018-06-12)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.1.0-rc.0...0.1.0)
+
+**Merged pull requests:**
+
+- Fixed missing error return [\#44](https://github.com/kubedb/mongodb/pull/44) ([the-redback](https://github.com/the-redback))
+- Revendor dependencies [\#43](https://github.com/kubedb/mongodb/pull/43) ([tamalsaha](https://github.com/tamalsaha))
+- Add changelog [\#42](https://github.com/kubedb/mongodb/pull/42) ([tamalsaha](https://github.com/tamalsaha))
+
 ## [0.1.0-rc.0](https://github.com/kubedb/mongodb/tree/0.1.0-rc.0) (2018-05-28)
 [Full Changelog](https://github.com/kubedb/mongodb/compare/0.1.0-beta.2...0.1.0-rc.0)
 
@@ -49,7 +112,6 @@
 **Merged pull requests:**
 
 - Fix Analytics and pass client-id as ENV to Snapshot Job [\#12](https://github.com/kubedb/mongodb/pull/12) ([the-redback](https://github.com/the-redback))
-- update docker image validation [\#11](https://github.com/kubedb/mongodb/pull/11) ([aerokite](https://github.com/aerokite))
 - Add docker-registry and WorkQueue [\#10](https://github.com/kubedb/mongodb/pull/10) ([the-redback](https://github.com/the-redback))
 - Use client id for analytics [\#9](https://github.com/kubedb/mongodb/pull/9) ([tamalsaha](https://github.com/tamalsaha))
 - Fix CRD registration [\#8](https://github.com/kubedb/mongodb/pull/8) ([the-redback](https://github.com/the-redback))
