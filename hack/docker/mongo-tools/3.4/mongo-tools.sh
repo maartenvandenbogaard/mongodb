@@ -89,7 +89,7 @@ fi
 
 # Wait for mongodb to start
 # ref: http://unix.stackexchange.com/a/5279
-while ! nc -q 1 $DB_HOST $DB_PORT </dev/null; do
+while ! mongo --host "$DB_HOST" --port $DB_PORT --eval "db.adminCommand('ping')"; do
   echo "Waiting... database is not ready yet"
   sleep 5
 done

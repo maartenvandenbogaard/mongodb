@@ -70,7 +70,7 @@ func (c *Controller) createRestoreJob(mongodb *api.MongoDB, snapshot *api.Snapsh
 							Image: mongodbVersion.Spec.Tools.Image,
 							Args: append([]string{
 								api.JobTypeRestore,
-								fmt.Sprintf(`--host=%s`, mongodb.ServiceName()),
+								fmt.Sprintf(`--host=%s`, mongodb.HostAddress()),
 								fmt.Sprintf(`--data-dir=%s`, snapshotDumpDir),
 								fmt.Sprintf(`--bucket=%s`, bucket),
 								fmt.Sprintf(`--folder=%s`, folderName),
@@ -226,7 +226,7 @@ func (c *Controller) getSnapshotterJob(snapshot *api.Snapshot) (*batch.Job, erro
 							Image: mongodbVersion.Spec.Tools.Image,
 							Args: append([]string{
 								api.JobTypeBackup,
-								fmt.Sprintf(`--host=%s`, mongodb.ServiceName()),
+								fmt.Sprintf(`--host=%s`, mongodb.HostAddress()),
 								fmt.Sprintf(`--data-dir=%s`, snapshotDumpDir),
 								fmt.Sprintf(`--bucket=%s`, bucket),
 								fmt.Sprintf(`--folder=%s`, folderName),
