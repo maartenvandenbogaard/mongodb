@@ -1,5 +1,35 @@
 # Change Log
 
+## [0.2.0-rc.0](https://github.com/kubedb/mongodb/tree/0.2.0-rc.0) (2018-10-15)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-beta.1...0.2.0-rc.0)
+
+**Merged pull requests:**
+
+- Support providing resources for monitoring container [\#110](https://github.com/kubedb/mongodb/pull/110) ([tamalsaha](https://github.com/tamalsaha))
+- Update kubernetes client libraries to 1.12.0 [\#109](https://github.com/kubedb/mongodb/pull/109) ([tamalsaha](https://github.com/tamalsaha))
+- Add validation webhook xray [\#108](https://github.com/kubedb/mongodb/pull/108) ([tamalsaha](https://github.com/tamalsaha))
+- Various Fixes [\#107](https://github.com/kubedb/mongodb/pull/107) ([hossainemruz](https://github.com/hossainemruz))
+- Fix host for mongodb backup and restore jobs [\#106](https://github.com/kubedb/mongodb/pull/106) ([the-redback](https://github.com/the-redback))
+- Use dynamic username for mongodb backup and restore [\#105](https://github.com/kubedb/mongodb/pull/105) ([the-redback](https://github.com/the-redback))
+- Merge ports from service template [\#103](https://github.com/kubedb/mongodb/pull/103) ([tamalsaha](https://github.com/tamalsaha))
+- Replace doNotPause with TerminationPolicy = DoNotTerminate [\#102](https://github.com/kubedb/mongodb/pull/102) ([tamalsaha](https://github.com/tamalsaha))
+- Pass resources to NamespaceValidator [\#101](https://github.com/kubedb/mongodb/pull/101) ([tamalsaha](https://github.com/tamalsaha))
+- Various fixes [\#100](https://github.com/kubedb/mongodb/pull/100) ([tamalsaha](https://github.com/tamalsaha))
+- Support Livecycle hook and container probes [\#99](https://github.com/kubedb/mongodb/pull/99) ([tamalsaha](https://github.com/tamalsaha))
+- Check if Kubernetes version is supported before running operator [\#98](https://github.com/kubedb/mongodb/pull/98) ([tamalsaha](https://github.com/tamalsaha))
+- Update package alias [\#97](https://github.com/kubedb/mongodb/pull/97) ([tamalsaha](https://github.com/tamalsaha))
+
+## [0.2.0-beta.1](https://github.com/kubedb/mongodb/tree/0.2.0-beta.1) (2018-09-30)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-beta.0...0.2.0-beta.1)
+
+**Merged pull requests:**
+
+- Revendor api [\#96](https://github.com/kubedb/mongodb/pull/96) ([tamalsaha](https://github.com/tamalsaha))
+- Fix tests [\#95](https://github.com/kubedb/mongodb/pull/95) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor api for catalog apigroup [\#94](https://github.com/kubedb/mongodb/pull/94) ([tamalsaha](https://github.com/tamalsaha))
+- Fix: Restrict user from updating spec.storageType [\#93](https://github.com/kubedb/mongodb/pull/93) ([the-redback](https://github.com/the-redback))
+- Use --pull flag with docker build \(\#20\) [\#92](https://github.com/kubedb/mongodb/pull/92) ([tamalsaha](https://github.com/tamalsaha))
+
 ## [0.2.0-beta.0](https://github.com/kubedb/mongodb/tree/0.2.0-beta.0) (2018-09-20)
 [Full Changelog](https://github.com/kubedb/mongodb/compare/0.1.0...0.2.0-beta.0)
 
