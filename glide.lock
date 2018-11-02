@@ -1,5 +1,5 @@
-hash: d4f196a475f69b72fec5fd4f82759c2041cffc1d21a905a4cac5e63a3799c5ec
-updated: 2018-11-01T12:38:54.345114405+06:00
+hash: 6bafd27582235adc518922d3f7965b9cc7b59a7617994bd04a17feb296f4f110
+updated: 2018-11-01T12:49:09.707565277+06:00
 imports:
 - name: bitbucket.org/ww/goautoneg
   version: 75cd24fc2f2c2a2088577d12123ddee5f54e0675
@@ -204,9 +204,7 @@ imports:
   - daemon
   - journal
 - name: github.com/coreos/prometheus-operator
-  version: b9bfccafc646c76bd9b1ebf209ea528fde37f2e3
-  repo: https://github.com/kmodules/prometheus-operator.git
-  vcs: git
+  version: 82a6ad2071ff653e38b3b4719ecb789d73f3ab05
   subpackages:
   - pkg/client/monitoring/v1
 - name: github.com/cpuguy83/go-md2man
