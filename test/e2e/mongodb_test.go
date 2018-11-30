@@ -49,7 +49,7 @@ var _ = Describe("MongoDB", func() {
 		garbageMongoDB = new(api.MongoDBList)
 		mongodbVersion = f.MongoDBVersion()
 		snapshot = f.Snapshot()
-		secret = new(core.Secret)
+		secret = nil
 		skipMessage = ""
 		skipSnapshotDataChecking = true
 		dbName = "kubedb"
@@ -91,6 +91,13 @@ var _ = Describe("MongoDB", func() {
 
 		By("Wait for Running mongodb")
 		f.EventuallyMongoDBRunning(mongodb.ObjectMeta).Should(BeTrue())
+
+		By("Wait for AppBinding to create")
+		f.EventuallyAppBinding(mongodb.ObjectMeta).Should(BeTrue())
+
+		By("Check valid AppBinding Specs")
+		err := f.CheckAppBindingSpec(mongodb.ObjectMeta)
+		Expect(err).NotTo(HaveOccurred())
 	}
 
 	var deleteTestResource = func() {
@@ -162,7 +169,10 @@ var _ = Describe("MongoDB", func() {
 			}
 
 			if secret != nil {
-				f.DeleteSecret(secret.ObjectMeta)
+				err := f.DeleteSecret(secret.ObjectMeta)
+				if !kerr.IsNotFound(err) {
+					Expect(err).NotTo(HaveOccurred())
+				}
 			}
 		})
 
@@ -287,7 +297,8 @@ var _ = Describe("MongoDB", func() {
 						shouldTakeSnapshot()
 
 						By("Deleting Snapshot")
-						f.DeleteSnapshot(snapshot.ObjectMeta)
+						err := f.DeleteSnapshot(snapshot.ObjectMeta)
+						Expect(err).NotTo(HaveOccurred())
 
 						By("Waiting Snapshot to be deleted")
 						f.EventuallySnapshot(snapshot.ObjectMeta).Should(BeFalse())
@@ -522,10 +533,12 @@ var _ = Describe("MongoDB", func() {
 					f.EventuallyDocumentExists(mongodb.ObjectMeta, dbName).Should(BeTrue())
 
 					By("Create Secret")
-					f.CreateSecret(secret)
+					err := f.CreateSecret(secret)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Create Snapshot")
-					f.CreateSnapshot(snapshot)
+					err = f.CreateSnapshot(snapshot)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Check for Succeeded snapshot")
 					f.EventuallySnapshotPhase(snapshot.ObjectMeta).Should(Equal(api.SnapshotPhaseSucceeded))
@@ -801,10 +814,12 @@ var _ = Describe("MongoDB", func() {
 					f.EventuallyDocumentExists(mongodb.ObjectMeta, dbName).Should(BeTrue())
 
 					By("Create Secret")
-					f.CreateSecret(secret)
+					err := f.CreateSecret(secret)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Create Snapshot")
-					f.CreateSnapshot(snapshot)
+					err = f.CreateSnapshot(snapshot)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Check for Succeeded snapshot")
 					f.EventuallySnapshotPhase(snapshot.ObjectMeta).Should(Equal(api.SnapshotPhaseSucceeded))
@@ -958,7 +973,8 @@ var _ = Describe("MongoDB", func() {
 
 				var shouldStartupSchedular = func() {
 					By("Create Secret")
-					f.CreateSecret(secret)
+					err := f.CreateSecret(secret)
+					Expect(err).NotTo(HaveOccurred())
 
 					// Create and wait for running MongoDB
 					createAndWaitForRunning()
@@ -1044,7 +1060,8 @@ var _ = Describe("MongoDB", func() {
 					createAndWaitForRunning()
 
 					By("Create Secret")
-					f.CreateSecret(secret)
+					err := f.CreateSecret(secret)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Update mongodb")
 					_, err = f.PatchMongoDB(mongodb.ObjectMeta, func(in *api.MongoDB) *api.MongoDB {
@@ -1101,7 +1118,8 @@ var _ = Describe("MongoDB", func() {
 					createAndWaitForRunning()
 
 					By("Create Secret")
-					f.CreateSecret(secret)
+					err := f.CreateSecret(secret)
+					Expect(err).NotTo(HaveOccurred())
 
 					By("Update mongodb")
 					_, err = f.PatchMongoDB(mongodb.ObjectMeta, func(in *api.MongoDB) *api.MongoDB {
@@ -1215,10 +1233,12 @@ var _ = Describe("MongoDB", func() {
 				f.EventuallyDocumentExists(mongodb.ObjectMeta, dbName).Should(BeTrue())
 
 				By("Create Secret")
-				f.CreateSecret(secret)
+				err := f.CreateSecret(secret)
+				Expect(err).NotTo(HaveOccurred())
 
 				By("Create Snapshot")
-				f.CreateSnapshot(snapshot)
+				err = f.CreateSnapshot(snapshot)
+				Expect(err).NotTo(HaveOccurred())
 
 				By("Check for succeeded snapshot")
 				f.EventuallySnapshotPhase(snapshot.ObjectMeta).Should(Equal(api.SnapshotPhaseSucceeded))
@@ -1250,10 +1270,11 @@ var _ = Describe("MongoDB", func() {
 					f.EventuallyMongoDBRunning(mongodb.ObjectMeta).Should(BeTrue())
 
 					By("Update mongodb to set spec.terminationPolicy = Pause")
-					f.PatchMongoDB(mongodb.ObjectMeta, func(in *api.MongoDB) *api.MongoDB {
+					_, err := f.PatchMongoDB(mongodb.ObjectMeta, func(in *api.MongoDB) *api.MongoDB {
 						in.Spec.TerminationPolicy = api.TerminationPolicyPause
 						return in
 					})
+					Expect(err).NotTo(HaveOccurred())
 				}
 
 				It("should work successfully", shouldWorkDoNotTerminate)
