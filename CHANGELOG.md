@@ -1,5 +1,45 @@
 # Change Log
 
+## [0.2.0](https://github.com/kubedb/mongodb/tree/0.2.0) (2018-12-17)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-rc.2...0.2.0)
+
+**Fixed bugs:**
+
+- Fix panic for mongodb probe [\#125](https://github.com/kubedb/mongodb/pull/125) ([the-redback](https://github.com/the-redback))
+
+**Merged pull requests:**
+
+- Reuse event recorder [\#129](https://github.com/kubedb/mongodb/pull/129) ([tamalsaha](https://github.com/tamalsaha))
+- Revendor dependencies [\#128](https://github.com/kubedb/mongodb/pull/128) ([tamalsaha](https://github.com/tamalsaha))
+- OSM binay upgraded & E2E tests for multiple collecion [\#127](https://github.com/kubedb/mongodb/pull/127) ([the-redback](https://github.com/the-redback))
+- Test for faulty snapshot [\#126](https://github.com/kubedb/mongodb/pull/126) ([the-redback](https://github.com/the-redback))
+
+## [0.2.0-rc.2](https://github.com/kubedb/mongodb/tree/0.2.0-rc.2) (2018-12-06)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-rc.1...0.2.0-rc.2)
+
+**Merged pull requests:**
+
+- Upgrade database secret keys  [\#124](https://github.com/kubedb/mongodb/pull/124) ([the-redback](https://github.com/the-redback))
+- Ignore mutation of fields to default values during update [\#123](https://github.com/kubedb/mongodb/pull/123) ([tamalsaha](https://github.com/tamalsaha))
+- Support configuration options for exporter sidecar [\#122](https://github.com/kubedb/mongodb/pull/122) ([tamalsaha](https://github.com/tamalsaha))
+- Use flags.DumpAll [\#121](https://github.com/kubedb/mongodb/pull/121) ([tamalsaha](https://github.com/tamalsaha))
+
+## [0.2.0-rc.1](https://github.com/kubedb/mongodb/tree/0.2.0-rc.1) (2018-12-02)
+[Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-rc.0...0.2.0-rc.1)
+
+**Merged pull requests:**
+
+- Apply cleanup [\#120](https://github.com/kubedb/mongodb/pull/120) ([tamalsaha](https://github.com/tamalsaha))
+- Set periodic analytics [\#119](https://github.com/kubedb/mongodb/pull/119) ([tamalsaha](https://github.com/tamalsaha))
+- Introduce AppBinding support [\#118](https://github.com/kubedb/mongodb/pull/118) ([the-redback](https://github.com/the-redback))
+- Fix analytics [\#117](https://github.com/kubedb/mongodb/pull/117) ([the-redback](https://github.com/the-redback))
+- Fix Mongo liveness/readiness probes overwrite podTemplate configuration [\#116](https://github.com/kubedb/mongodb/pull/116) ([the-redback](https://github.com/the-redback))
+- Error out from cron job for deprecated dbversion [\#115](https://github.com/kubedb/mongodb/pull/115) ([the-redback](https://github.com/the-redback))
+- Fix operator startup in minikube [\#114](https://github.com/kubedb/mongodb/pull/114) ([the-redback](https://github.com/the-redback))
+- Removed WaitUntilDigitalOceanReady from e2e tests [\#113](https://github.com/kubedb/mongodb/pull/113) ([the-redback](https://github.com/the-redback))
+- Add CRDs without observation when operator starts [\#112](https://github.com/kubedb/mongodb/pull/112) ([the-redback](https://github.com/the-redback))
+- Fix DNS for mongodb hosts [\#111](https://github.com/kubedb/mongodb/pull/111) ([the-redback](https://github.com/the-redback))
+
 ## [0.2.0-rc.0](https://github.com/kubedb/mongodb/tree/0.2.0-rc.0) (2018-10-15)
 [Full Changelog](https://github.com/kubedb/mongodb/compare/0.2.0-beta.1...0.2.0-rc.0)
 
