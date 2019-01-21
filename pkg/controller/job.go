@@ -169,6 +169,11 @@ func (c *Controller) createRestoreJob(mongodb *api.MongoDB, snapshot *api.Snapsh
 		}
 		job.Spec.Template.Spec.Volumes = append(job.Spec.Template.Spec.Volumes, volume)
 	}
+
+	if c.EnableRBAC {
+		job.Spec.Template.Spec.ServiceAccountName = mongodb.OffshootName()
+	}
+
 	return c.Client.BatchV1().Jobs(mongodb.Namespace).Create(job)
 }
 
