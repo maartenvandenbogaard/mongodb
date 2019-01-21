@@ -1,0 +1,71 @@
+package controller
+
+import (
+	core_util "github.com/appscode/kutil/core/v1"
+	api "github.com/kubedb/apimachinery/apis/kubedb/v1alpha1"
+	core "k8s.io/api/core/v1"
+	kerr "k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	clientsetscheme "k8s.io/client-go/kubernetes/scheme"
+	"k8s.io/client-go/tools/reference"
+)
+
+func (c *Controller) deleteServiceAccount(mongodb *api.MongoDB) error {
+	// Delete existing ServiceAccount
+	if err := c.Client.CoreV1().ServiceAccounts(mongodb.Namespace).Delete(mongodb.OffshootName(), nil); err != nil {
+		if !kerr.IsNotFound(err) {
+			return err
+		}
+	}
+	return nil
+}
+
+func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
+	ref, rerr := reference.GetReference(clientsetscheme.Scheme, mongodb)
+	if rerr != nil {
+		return rerr
+	}
+	// Create new ServiceAccount
+	_, _, err := core_util.CreateOrPatchServiceAccount(
+		c.Client,
+		metav1.ObjectMeta{
+			Name:      mongodb.OffshootName(),
+			Namespace: mongodb.Namespace,
+		},
+		func(in *core.ServiceAccount) *core.ServiceAccount {
+			core_util.EnsureOwnerReference(&in.ObjectMeta, ref)
+			return in
+		},
+	)
+	return err
+}
+
+func (c *Controller) deleteRoleBinding(mongodb *api.MongoDB) error {
+	// Delete existing RoleBindings
+	if err := c.Client.RbacV1beta1().RoleBindings(mongodb.Namespace).Delete(mongodb.OffshootName(), nil); err != nil {
+		if !kerr.IsNotFound(err) {
+			return err
+		}
+	}
+	return nil
+}
+
+func (c *Controller) ensureRBACStuff(mongodb *api.MongoDB) error {
+	// Create New ServiceAccount
+	if err := c.createServiceAccount(mongodb); err != nil {
+		if !kerr.IsAlreadyExists(err) {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (c *Controller) deleteRBACStuff(mongodb *api.MongoDB) error {
+	// Delete ServiceAccount
+	if err := c.deleteServiceAccount(mongodb); err != nil {
+		return err
+	}
+
+	return nil
+}
