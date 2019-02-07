@@ -10,16 +10,6 @@ import (
 	"k8s.io/client-go/tools/reference"
 )
 
-func (c *Controller) deleteServiceAccount(mongodb *api.MongoDB) error {
-	// Delete existing ServiceAccount
-	if err := c.Client.CoreV1().ServiceAccounts(mongodb.Namespace).Delete(mongodb.OffshootName(), nil); err != nil {
-		if !kerr.IsNotFound(err) {
-			return err
-		}
-	}
-	return nil
-}
-
 func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
 	ref, rerr := reference.GetReference(clientsetscheme.Scheme, mongodb)
 	if rerr != nil {
@@ -40,31 +30,12 @@ func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
 	return err
 }
 
-func (c *Controller) deleteRoleBinding(mongodb *api.MongoDB) error {
-	// Delete existing RoleBindings
-	if err := c.Client.RbacV1beta1().RoleBindings(mongodb.Namespace).Delete(mongodb.OffshootName(), nil); err != nil {
-		if !kerr.IsNotFound(err) {
-			return err
-		}
-	}
-	return nil
-}
-
 func (c *Controller) ensureRBACStuff(mongodb *api.MongoDB) error {
 	// Create New ServiceAccount
 	if err := c.createServiceAccount(mongodb); err != nil {
 		if !kerr.IsAlreadyExists(err) {
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (c *Controller) deleteRBACStuff(mongodb *api.MongoDB) error {
-	// Delete ServiceAccount
-	if err := c.deleteServiceAccount(mongodb); err != nil {
-		return err
 	}
 
 	return nil
