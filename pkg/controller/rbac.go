@@ -10,7 +10,7 @@ import (
 	"k8s.io/client-go/tools/reference"
 )
 
-func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
+func (c *Controller) createServiceAccount(mongodb *api.MongoDB, saName string) error {
 	ref, rerr := reference.GetReference(clientsetscheme.Scheme, mongodb)
 	if rerr != nil {
 		return rerr
@@ -19,7 +19,7 @@ func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
 	_, _, err := core_util.CreateOrPatchServiceAccount(
 		c.Client,
 		metav1.ObjectMeta{
-			Name:      mongodb.OffshootName(),
+			Name:      saName,
 			Namespace: mongodb.Namespace,
 		},
 		func(in *core.ServiceAccount) *core.ServiceAccount {
@@ -32,7 +32,14 @@ func (c *Controller) createServiceAccount(mongodb *api.MongoDB) error {
 
 func (c *Controller) ensureRBACStuff(mongodb *api.MongoDB) error {
 	// Create New ServiceAccount
-	if err := c.createServiceAccount(mongodb); err != nil {
+	if err := c.createServiceAccount(mongodb, mongodb.OffshootName()); err != nil {
+		if !kerr.IsAlreadyExists(err) {
+			return err
+		}
+	}
+
+	// Create New SNapshot ServiceAccount
+	if err := c.createServiceAccount(mongodb, mongodb.SnapshotSAName()); err != nil {
 		if !kerr.IsAlreadyExists(err) {
 			return err
 		}

@@ -178,7 +178,7 @@ func (c *Controller) createRestoreJob(mongodb *api.MongoDB, snapshot *api.Snapsh
 	}
 
 	if c.EnableRBAC {
-		job.Spec.Template.Spec.ServiceAccountName = mongodb.OffshootName()
+		job.Spec.Template.Spec.ServiceAccountName = mongodb.SnapshotSAName()
 	}
 
 	return c.Client.BatchV1().Jobs(mongodb.Namespace).Create(job)
@@ -350,7 +350,7 @@ func (c *Controller) getSnapshotterJob(snapshot *api.Snapshot) (*batch.Job, erro
 	}
 
 	if c.EnableRBAC {
-		job.Spec.Template.Spec.ServiceAccountName = mongodb.OffshootName()
+		job.Spec.Template.Spec.ServiceAccountName = mongodb.SnapshotSAName()
 	}
 
 	return job, nil
